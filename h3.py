@@ -1,7 +1,6 @@
 import csv
 import numpy as np
-from sklearn.grid_search import GridSearchCV
-from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 
 f = open('./train.csv','r')
 X = []
@@ -17,10 +16,8 @@ f.close()
 X = np.array(X)
 y = np.array(y)
 
-tuned_parameters = [{'kernel' : ['rbf'], 'gamma': [0.1, 1e-2, 1e-3], 'C': [10, 100, 1000]},
-                    {'kernel' : ['poly'], 'degree' : [5, 9], 'C' : [1, 10]}]
-
-clf = GridSearchCV( SVC(), tuned_parameters, cv=3, verbose=2, n_jobs=2 ).fit(X, y)
+clf = RandomForestClassifier(n_estimators=10)
+clf = clf.fit(X, y)
 
 t = open('./test.csv','r')
 tX = []
