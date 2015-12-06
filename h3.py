@@ -1,7 +1,7 @@
 import csv
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.decomposition import RandomizedPCA
+from sklearn.decomposition import TruncatedSVD
 
 f = open('./train.csv','r')
 X = []
@@ -17,7 +17,7 @@ f.close()
 X = np.array(X)
 y = np.array(y)
 
-pca = RandomizedPCA(n_components=9)
+pca = TruncatedSVD(n_components=5)
 pca.fit(X)
 X = pca.fit_transform(X)
 
