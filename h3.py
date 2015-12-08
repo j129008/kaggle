@@ -1,6 +1,6 @@
 import csv
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from sklearn import tree
 
 f = open('./train.csv','r')
 X = []
@@ -16,7 +16,7 @@ f.close()
 X = np.array(X)
 y = np.array(y)
 
-clf = RandomForestClassifier(n_estimators=10)
+clf = tree.DecisionTreeClassifier()
 clf = clf.fit(X, y)
 
 t = open('./test.csv','r')
